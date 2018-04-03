@@ -4,6 +4,7 @@ import io.swagger.model.Error;
 import io.swagger.model.InlineResponse20017;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+import io.swagger.model.Msg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-04-03T13:27:38.359Z")
 
@@ -48,8 +50,17 @@ public class MsgApiController implements MsgApi {
                 return new ResponseEntity<InlineResponse20017>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+        InlineResponse20017 in;
+        in = new InlineResponse20017();
+        List<Msg> msgList = new ArrayList<Msg>();
+        Msg msg = new Msg();
+        msg.setTitle("pf");
+        msgList.add(msg);
+        in.setMsgList(msgList);
 
-        return new ResponseEntity<InlineResponse20017>(HttpStatus.NOT_IMPLEMENTED);
+        return ResponseEntity.ok(in);
+        //return new ResponseEntity<InlineResponse20017>(HttpStatus.OK);
+        //return new ResponseEntity<InlineResponse20017>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
